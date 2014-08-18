@@ -12,7 +12,7 @@ export default Ember.Route.extend(ConfirmationMixin, {
     abortMessage: 'You have unsaved changes, are you sure you want to leave?',
     
     onUnload: function() {
-        /* do some clean up */
+        /* optional hook to execute some clean up onUnload */
     }
 });
 ```
