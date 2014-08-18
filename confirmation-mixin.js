@@ -7,7 +7,7 @@ export default Ember.Mixin.create({
     onUnload: Ember.K,
 
     preventUnload: function() {
-        if(!this.skipAbort && get(this, 'currentModel') && get(this, 'currentModel.isDirty')) {
+        if(!this.skipAbort && get(this, 'controller') && get(this, 'controller.isDirty')) {
             return true;
         }
     },
