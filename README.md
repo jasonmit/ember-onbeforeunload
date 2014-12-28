@@ -1,5 +1,7 @@
 # ember-onbeforeunload confirmation
 
+[working jsbin demo](http://jsbin.com/cakejepeyu/1/edit)
+
 The default implementation is to check the model's `isDirty` property to prevent transitioning away from the route or closing the window until the user confirms intent.  This pattern is typically used to prevent the user from mistakeningly closing to browser window without saving their data.
 
 Usage:
