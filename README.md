@@ -1,8 +1,6 @@
-# Ember Route Mixin for window.onbeforeunload
+# ember-onbeforeunload confirmation
 
-The default implementation is to check the model's `isDirty` property to
-prevent transitioning away from the route or application unless the user
-confirms this is the intended action.
+The default implementation is to check the model's `isDirty` property to prevent transitioning away from the route or closing the window until the user confirms intent.  This pattern is typically used to prevent the user from mistakeningly closing to browser window without saving their data.
 
 Usage:
 ```js
@@ -11,21 +9,17 @@ import ConfirmationMixin from 'app/mixins/confirmation-mixin.js';
 export default Ember.Route.extend(ConfirmationMixin, {
     abortMessage: 'You have unsaved changes, are you sure you want to leave?',
     
-    onUnload: function() {
-        /* optional hook to execute some clean up onUnload */
+    // A function that is invoked to determine whether to block the transition
+    // or the user from closing the browser window.
+    //
+    // The default implementation if you do not override:
+    preventUnload: function () {
+        return !!get(this, 'controller.isDirty');
+    },
+    
+    // Optional hook to execute some clean up on window unload
+    onWindowUnload: function() {
+        // Implement your own logic, if needed.
     }
-});
-```
-
-And then on the controller for this route;
-
-```js
-export default Ember.ObjectController.extend({
-    isDirty: function() {
-        /* 
-         * some custom logic here, or remove it and 
-         * let it use the model's isDirty property 
-         */
-    }.property()
 });
 ```
