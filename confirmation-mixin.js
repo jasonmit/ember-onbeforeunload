@@ -2,43 +2,37 @@ var get = Ember.get;
 
 export default Ember.Mixin.create({
     abortMessage: 'There are unsaved changes.  Are you sure you would like to continue?',
-    skipAbort: false,
 
-    onUnload: Ember.K,
+    // you can implement some custom clean up logic here
+    onWindowUnload: Ember.K,
 
-    preventUnload: function() {
-        if(!this.skipAbort && get(this, 'controller') && get(this, 'controller.isDirty')) {
-            return true;
+    // you can implement your own condition to show the condition
+    preventUnload: function () {
+        return !!get(this, 'controller.isDirty');
+    },
+
+    onBeforeWindowUnload: function () {
+        if (this.preventUnload()) {
+            return get(this, 'abortMessage');
         }
     },
 
-    onBeforeUnload: function() {
-        if(this.preventUnload()) {
-            return this.get('abortMessage');
-        }
-    },
+    'on-activate': Ember.on('activate', function () {
+        window.onbeforeunload = this.onBeforeWindowUnload.bind(this);
+        window.onunload = this.onWindowUnload.bind(this);
+    }),
 
-    activate: function() {
-        window.onbeforeunload = function() {
-            return this.onBeforeUnload();
-        }.bind(this);
-
-        window.onunload = function() {
-            return this.onUnload();
-        }.bind(this);
-    },
-
-    deactivate: function() {
+    'on-deactivate': Ember.on('deactivate', function () {
         window.onbeforeunload = null;
         window.onunload = null;
-    },
+    }),
 
     actions: {
-        willTransition: function(transition) {
+        willTransition: function (transition) {
             var allow = transition.targetName.indexOf(this.routeName + '.') === 0;
 
-            if(!allow && this.preventUnload()) {
-                if(!window.confirm(this.get('abortMessage'))) {
+            if (!allow && this.preventUnload()) {
+                if (!window.confirm(get(this, 'abortMessage'))) {
                     transition.abort();
                 }
                 else {
