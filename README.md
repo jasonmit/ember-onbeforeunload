@@ -1,6 +1,6 @@
 # ember-onbeforeunload
 
-This README outlines the details of collaborating on this Ember addon.
+An addon to conditionally prompt the user when transitioning between routes or closing the browser.
 
 ## Implementing
 
@@ -9,13 +9,15 @@ This README outlines the details of collaborating on this Ember addon.
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	// `isDirty` on the current route's controller
-	// is the property which determines whether or not to
-	// prompt a confirmation dialog.  Normally, this would be
-  // checking if the controller's model is dirty
+  /*
+  `isDirty` on the current route's controller
+  is the property which determines whether or not to
+  prompt a confirmation dialog.   Normally, this would be
+  checking if the controller's model is dirty
+  */
   isDirty: Ember.computed('model', function() {
-		return this.get('model.isDirty')
-	})
+    return this.get('model.isDirty')
+  })
 });
 ```
 
@@ -25,10 +27,10 @@ import Ember from 'ember';
 import ConfirmationMixin from 'ember-onbeforeunload/confirmation';
 
 export default Ember.Route.extend(ConfirmationMixin, {
-	confirmationMessage(model) {
-		const name = Ember.get(model, 'name');
-		return `You have unsaved changes for ${name}, are you sure you want to continue?`;
-	}
+  confirmationMessage(model) {
+    const name = Ember.get(model, 'name');
+    return `You have unsaved changes for ${name}, are you sure you want to continue?`;
+  }
 });
 ```
 
