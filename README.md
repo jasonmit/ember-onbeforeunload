@@ -1,4 +1,6 @@
 # ember-onbeforeunload
+[![npm Version][npm-badge]][npm]
+[![Build Status][travis-badge]][travis]
 
 An addon to conditionally prompt the user when transitioning between routes or closing the browser.
 
@@ -55,3 +57,8 @@ export default Ember.Route.extend(ConfirmationMixin, {
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+[npm]: https://www.npmjs.org/package/ember-onbeforeunload
+[npm-badge]: https://img.shields.io/npm/v/ember-onbeforeunload.svg?style=flat-square
+[travis]: https://travis-ci.org/jasonmit/ember-onbeforeunload
+[travis-badge]: https://img.shields.io/travis/jasonmit/ember-onbeforeunload.svg?branch=master&style=flat-square
