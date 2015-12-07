@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ConfirmationMixin from 'ember-onbeforeunload/confirmation';
+import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
 
 export default Ember.Route.extend(ConfirmationMixin, {
 	model() {
