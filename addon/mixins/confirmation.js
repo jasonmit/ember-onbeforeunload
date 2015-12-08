@@ -60,11 +60,15 @@ export default Mixin.create({
     return msg;
   },
 
+  allowUnload(transition) {
+    return transition.targetName.indexOf(this.routeName + '.') === 0;
+  },
+
   actions: {
     willTransition(transition) {
 			this._super(...arguments);
 
-      let allow = transition.targetName.indexOf(this.routeName + '.') === 0;
+      const allow = this.allowUnload(transition);
 
       if (!allow && this.canUnload()) {
         const msg = this.readConfirmation();
