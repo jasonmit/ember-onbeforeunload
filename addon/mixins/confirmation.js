@@ -1,8 +1,14 @@
 import Ember from 'ember';
 
-const { get, Mixin } = Ember;
+const { get, Mixin, Route } = Ember;
 
 export default Mixin.create({
+  _ensureConfirmationMixinOnRoute: Ember.on('init', function() {
+    if (!(this instanceof Route)) {
+      throw Error('ember-onbeforeunload ConfirmationMixin must be mixed into a Route.');
+    }
+  }),
+
   confirmationMessage(/* model */) {
     return 'Unsaved changed! Are you sure you would like to continue?';
   },
