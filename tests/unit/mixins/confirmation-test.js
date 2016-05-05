@@ -4,9 +4,15 @@ import { module, test } from 'qunit';
 
 module('Unit | Mixin | confirmation');
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  let ConfirmationObject = Ember.Object.extend(ConfirmationMixin);
-  let subject = ConfirmationObject.create();
+test('allows mixing into a route', function(assert) {
+  let ConfirmationRoute = Ember.Route.extend(ConfirmationMixin);
+  let subject = ConfirmationRoute.create();
   assert.ok(subject);
+});
+
+test('throws an exception when mixing into a plain-ol\' ember object', function(assert) {
+  let ConfirmationObject = Ember.Object.extend(ConfirmationMixin);
+  assert.throws(function() {
+    ConfirmationObject.create();
+  });
 });
