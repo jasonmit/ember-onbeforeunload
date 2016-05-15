@@ -284,9 +284,9 @@ describe('ConfirmationMixin', function() {
             expect(windowConfirmStub.called).to.be.false;
           });
 
-          it('does not bubble the willTransition event', function() {
+          it('bubbles the willTransition event', function() {
             const retVal = subject.send('willTransition');
-            expect(retVal).to.equal(false);
+            expect(retVal).to.equal(true);
           });
         });
 

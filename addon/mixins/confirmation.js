@@ -87,12 +87,11 @@ export default Mixin.create({
 
         if (!window.confirm(msg)) {
           transition.abort();
-        } else {
-          return true;
+          return false;
         }
       }
 
-      return allow;
+      return true;
     }
   }
 });
