@@ -18,14 +18,14 @@ export default Mixin.create({
   },
 
   onBeforeunload(e) {
-    if (this.canUnload()) {
+    if (this.isPageDirty()) {
       const confirmationMessage = this.readConfirmation();
       e.returnValue = confirmationMessage;     // Gecko and Trident
       return confirmationMessage;              // Gecko and WebKit
     }
   },
 
-  canUnload() {
+  isPageDirty() {
     return !!get(this, 'controller.isDirty');
   },
 
@@ -66,7 +66,7 @@ export default Mixin.create({
     return msg;
   },
 
-  allowUnload(transition) {
+  allowDirtyTransition(transition) {
     return transition.targetName.indexOf(this.routeName + '.') === 0;
   },
 
@@ -74,9 +74,9 @@ export default Mixin.create({
     willTransition(transition) {
 			this._super(...arguments);
 
-      const allow = this.allowUnload(transition);
+      const allow = this.allowDirtyTransition(transition);
 
-      if (!allow && this.canUnload()) {
+      if (!allow && this.isPageDirty()) {
         const msg = this.readConfirmation();
 
         if (!window.confirm(msg)) {
