@@ -103,6 +103,10 @@ export default Ember.Route.extend(ConfirmationMixin, {
 });
 ```
 
+# Upgrading
+This library underwent major API changes with version 1.0.0. For information on
+how to upgrade, please check out [UPGRADING.md](https://github.com/jasonmit/ember-onbeforeunload/blob/master/UPGRADING.md).
+
 # Issues
 Found a bug? Please report it!
 
