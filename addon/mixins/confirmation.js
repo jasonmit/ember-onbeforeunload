@@ -10,7 +10,7 @@ export default Mixin.create({
   }),
 
   confirmationMessage(/* model */) {
-    return 'Unsaved changed! Are you sure you would like to continue?';
+    return 'Unsaved changes! Are you sure you would like to continue?';
   },
 
   onUnload() {
@@ -18,15 +18,19 @@ export default Mixin.create({
   },
 
   onBeforeunload(e) {
-    if (this.canUnload()) {
+    if (this.isPageDirty(this.modelFor(this.routeName))) {
       const confirmationMessage = this.readConfirmation();
       e.returnValue = confirmationMessage;     // Gecko and Trident
       return confirmationMessage;              // Gecko and WebKit
     }
   },
 
-  canUnload() {
-    return !!get(this, 'controller.isDirty');
+  isPageDirty(model) {
+    if (model) {
+      return !!get(model, 'hasDirtyAttributes');
+    } else {
+      return false;
+    }
   },
 
   handleEvent(event) {
@@ -60,13 +64,14 @@ export default Mixin.create({
     let msg = get(this, 'confirmationMessage');
 
     if (typeof msg === 'function') {
-      msg = msg.call(this, get(this, 'currentModel'));
+      const currentModel = this.modelFor(this.routeName);
+      msg = msg.call(this, currentModel);
     }
 
     return msg;
   },
 
-  allowUnload(transition) {
+  shouldCheckIsPageDirty(transition) {
     return transition.targetName.indexOf(this.routeName + '.') === 0;
   },
 
@@ -74,20 +79,18 @@ export default Mixin.create({
     willTransition(transition) {
 			this._super(...arguments);
 
-      const allow = this.allowUnload(transition);
+      const allow = this.shouldCheckIsPageDirty(transition);
 
-      if (!allow && this.canUnload()) {
+      if (!allow && this.isPageDirty(this.modelFor(this.routeName))) {
         const msg = this.readConfirmation();
 
         if (!window.confirm(msg)) {
           transition.abort();
-        }
-        else {
-          return true;
+          return false;
         }
       }
 
-      return allow;
+      return true;
     }
   }
 });
