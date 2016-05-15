@@ -18,15 +18,14 @@ export default Mixin.create({
   },
 
   onBeforeunload(e) {
-    if (this.isPageDirty()) {
+    if (this.isPageDirty(this.modelFor(this.routeName))) {
       const confirmationMessage = this.readConfirmation();
       e.returnValue = confirmationMessage;     // Gecko and Trident
       return confirmationMessage;              // Gecko and WebKit
     }
   },
 
-  isPageDirty() {
-    const model = this.modelFor(this.routeName);
+  isPageDirty(model) {
     if (model) {
       return !!get(model, 'hasDirtyAttributes');
     } else {
@@ -82,7 +81,7 @@ export default Mixin.create({
 
       const allow = this.shouldCheckIsPageDirty(transition);
 
-      if (!allow && this.isPageDirty()) {
+      if (!allow && this.isPageDirty(this.modelFor(this.routeName))) {
         const msg = this.readConfirmation();
 
         if (!window.confirm(msg)) {

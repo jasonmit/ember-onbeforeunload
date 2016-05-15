@@ -63,7 +63,7 @@ not the page is dirty, you can override the `isPageDirty` method.
 
 ```javascript
 export default Ember.Route.extend(ConfirmationMixin, {
-  isPageDirty() {
+  isPageDirty(/* model */) {
     const isDirty = true; // your logic here
     return isDirty;
   }

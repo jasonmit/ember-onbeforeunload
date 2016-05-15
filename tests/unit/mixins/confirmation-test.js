@@ -37,15 +37,14 @@ describe('ConfirmationMixin', function() {
         modelObj = Ember.Object.create({
           hasDirtyAttributes: undefined,
         });
-        sandbox.stub(subject, 'modelFor').returns(modelObj);
       });
 
       it('returns hasDirtyAttributes from model', function() {
         modelObj.set('hasDirtyAttributes', true);
-        expect(subject.isPageDirty()).to.be.true;
+        expect(subject.isPageDirty(modelObj)).to.be.true;
 
         modelObj.set('hasDirtyAttributes', false);
-        expect(subject.isPageDirty()).to.be.false;
+        expect(subject.isPageDirty(modelObj)).to.be.false;
       });
     });
 
@@ -53,7 +52,6 @@ describe('ConfirmationMixin', function() {
       let subject;
       beforeEach(function() {
         subject = defaultSubject;
-        sandbox.stub(subject, 'modelFor').returns(undefined);
       });
 
       it('returns false', function() {
@@ -167,6 +165,7 @@ describe('ConfirmationMixin', function() {
         subject = defaultSubject;
         sandbox.stub(subject, 'isPageDirty').returns(true);
         sandbox.stub(subject, 'readConfirmation').returns('Unsaved changes');
+        sandbox.stub(subject, 'modelFor').returns(undefined);
 
         eventMock = {
           type: 'beforeunload'
@@ -191,6 +190,7 @@ describe('ConfirmationMixin', function() {
       beforeEach(function() {
         subject = defaultSubject;
         sandbox.stub(subject, 'isPageDirty').returns(false);
+        sandbox.stub(subject, 'modelFor').returns(undefined);
       });
 
       it('does not modify the event in any way', function() {
