@@ -26,7 +26,12 @@ export default Mixin.create({
   },
 
   isPageDirty() {
-    return !!get(this, 'controller.isDirty');
+    const model = this.modelFor(this.routeName);
+    if (model) {
+      return !!get(model, 'hasDirtyAttributes');
+    } else {
+      return false;
+    }
   },
 
   handleEvent(event) {

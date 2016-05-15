@@ -29,6 +29,39 @@ describe('ConfirmationMixin', function() {
     });
   });
 
+  describe('isPageDirty', function() {
+    context('has model', function() {
+      let subject, modelObj;
+      beforeEach(function() {
+        subject = defaultSubject;
+        modelObj = Ember.Object.create({
+          hasDirtyAttributes: undefined,
+        });
+        sandbox.stub(subject, 'modelFor').returns(modelObj);
+      });
+
+      it('returns hasDirtyAttributes from model', function() {
+        modelObj.set('hasDirtyAttributes', true);
+        expect(subject.isPageDirty()).to.be.true;
+
+        modelObj.set('hasDirtyAttributes', false);
+        expect(subject.isPageDirty()).to.be.false;
+      });
+    });
+
+    context('no modelFor route', function() {
+      let subject;
+      beforeEach(function() {
+        subject = defaultSubject;
+        sandbox.stub(subject, 'modelFor').returns(undefined);
+      });
+
+      it('returns false', function() {
+        expect(subject.isPageDirty()).to.be.false;
+      });
+    });
+  });
+
   describe('confirmationMessage', function() {
     it('defaults to a sane message', function() {
       const subject = defaultSubject;
