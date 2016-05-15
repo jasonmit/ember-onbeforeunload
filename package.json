@@ -1,6 +1,6 @@
 {
   "name": "ember-onbeforeunload",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "An addon to conditionally prompt the user when transitioning between routes or closing the browser.",
   "directories": {
     "doc": "doc",
@@ -12,10 +12,16 @@
     "test": "ember try:testall"
   },
   "repository": "https://github.com/jasonmit/ember-onbeforeunload",
+  "homepage": "https://github.com/jasonmit/ember-onbeforeunload",
+  "bugs": "https://github.com/jasonmit/ember-onbeforeunload/issues",
   "engines": {
     "node": ">= 0.10.0"
   },
   "author": "Jason Mitchell <jason.mitchell.w@gmail.com>",
+  "contributors": [{
+    "name": "Ben Limmer",
+    "email": "hello@benlimmer.com"
+  }],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
