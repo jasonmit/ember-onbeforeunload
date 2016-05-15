@@ -10,7 +10,7 @@ export default Mixin.create({
   }),
 
   confirmationMessage(/* model */) {
-    return 'Unsaved changed! Are you sure you would like to continue?';
+    return 'Unsaved changes! Are you sure you would like to continue?';
   },
 
   onUnload() {
@@ -60,13 +60,14 @@ export default Mixin.create({
     let msg = get(this, 'confirmationMessage');
 
     if (typeof msg === 'function') {
-      msg = msg.call(this, get(this, 'currentModel'));
+      const currentModel = this.modelFor(this.routeName);
+      msg = msg.call(this, currentModel);
     }
 
     return msg;
   },
 
-  allowDirtyTransition(transition) {
+  shouldCheckIsPageDirty(transition) {
     return transition.targetName.indexOf(this.routeName + '.') === 0;
   },
 
@@ -74,15 +75,14 @@ export default Mixin.create({
     willTransition(transition) {
 			this._super(...arguments);
 
-      const allow = this.allowDirtyTransition(transition);
+      const allow = this.shouldCheckIsPageDirty(transition);
 
       if (!allow && this.isPageDirty()) {
         const msg = this.readConfirmation();
 
         if (!window.confirm(msg)) {
           transition.abort();
-        }
-        else {
+        } else {
           return true;
         }
       }
