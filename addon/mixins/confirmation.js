@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
-const { get, Mixin, Route } = Ember;
+const { get, on, Mixin, Route } = Ember;
 
 export default Mixin.create({
-  _ensureConfirmationMixinOnRoute: Ember.on('init', function() {
+  _ensureConfirmationMixinOnRoute: on('init', function() {
     if (!(this instanceof Route)) {
       throw Error('ember-onbeforeunload ConfirmationMixin must be mixed into a Route.');
     }
@@ -48,15 +48,23 @@ export default Mixin.create({
 
   activate() {
     const _super = this._super(...arguments);
-    window.addEventListener('beforeunload', this, false);
-    window.addEventListener('unload', this, false);
+    
+    if (window && window.addEventListener) {
+      window.addEventListener('beforeunload', this, false);
+      window.addEventListener('unload', this, false);
+    }
+
     return _super;
   },
 
   deactivate() {
     const _super = this._super(...arguments);
-    window.removeEventListener('beforeunload', this, false);
-    window.removeEventListener('unload', this, false);
+
+    if (window && window.removeEventListener) {
+      window.removeEventListener('beforeunload', this, false);
+      window.removeEventListener('unload', this, false);
+    }
+
     return _super;
   },
 
@@ -84,7 +92,7 @@ export default Mixin.create({
       if (!allow && this.isPageDirty(this.modelFor(this.routeName))) {
         const msg = this.readConfirmation();
 
-        if (!window.confirm(msg)) {
+        if (window && window.confirm && !window.confirm(msg)) {
           transition.abort();
           return false;
         }
