@@ -85,7 +85,7 @@ export default Mixin.create({
 
   actions: {
     willTransition(transition) {
-			this._super(...arguments);
+      this._super(...arguments);
 
       const allow = this.shouldCheckIsPageDirty(transition);
 
