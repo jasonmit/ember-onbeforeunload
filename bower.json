@@ -1,8 +1,0 @@
-{
-  "name": "ember-onbeforeunload",
-  "dependencies": {
-    "ember": "~2.9.0",
-    "ember-cli-shims": "0.1.3",
-    "ember-mocha-adapter": "0.3.1"
-  }
-}
