@@ -1,6 +1,15 @@
 # Change Log
 
+## [1.2.0](https://github.com/jasonmit/ember-onbeforeunload/tree/1.2.0) (2018-09-04)
+
+[Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/1.1.2...1.2.0)
+
+**Merged pull requests:**
+
+- Update to ember 2.16 LTS [\#17](https://github.com/jasonmit/ember-onbeforeunload/pull/17) ([blimmer](https://github.com/blimmer))
+
 ## [1.1.2](https://github.com/jasonmit/ember-onbeforeunload/tree/1.1.2) (2017-08-13)
+
 [Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/1.0.0...1.1.2)
 
 **Merged pull requests:**
@@ -9,6 +18,7 @@
 - Upgrade ember CLI to 2.9.1 [\#14](https://github.com/jasonmit/ember-onbeforeunload/pull/14) ([blimmer](https://github.com/blimmer))
 
 ## [1.0.0](https://github.com/jasonmit/ember-onbeforeunload/tree/1.0.0) (2016-05-15)
+
 [Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/0.3.0...1.0.0)
 
 **Closed issues:**
@@ -22,6 +32,7 @@
 - 1.0.0 Release [\#13](https://github.com/jasonmit/ember-onbeforeunload/pull/13) ([blimmer](https://github.com/blimmer))
 
 ## [0.3.0](https://github.com/jasonmit/ember-onbeforeunload/tree/0.3.0) (2016-05-05)
+
 [Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/0.2.0...0.3.0)
 
 **Closed issues:**
@@ -37,19 +48,27 @@
 - Upgrade ember-cli version & standardize mixin location [\#4](https://github.com/jasonmit/ember-onbeforeunload/pull/4) ([ronco](https://github.com/ronco))
 
 ## [0.2.0](https://github.com/jasonmit/ember-onbeforeunload/tree/0.2.0) (2015-12-07)
+
 [Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/0.1.0...0.2.0)
 
 ## [0.1.0](https://github.com/jasonmit/ember-onbeforeunload/tree/0.1.0) (2015-07-24)
+
 [Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/0.0.1...0.1.0)
+
+**Closed issues:**
+
+- Missing license [\#2](https://github.com/jasonmit/ember-onbeforeunload/issues/2)
 
 **Merged pull requests:**
 
 - turn it into an ember addon [\#3](https://github.com/jasonmit/ember-onbeforeunload/pull/3) ([jasonmit](https://github.com/jasonmit))
 
 ## [0.0.1](https://github.com/jasonmit/ember-onbeforeunload/tree/0.0.1) (2015-06-21)
+
+[Full Changelog](https://github.com/jasonmit/ember-onbeforeunload/compare/78e4e0c3ac32ff7d14ef008aeb56804771681645...0.0.1)
+
 **Closed issues:**
 
-- Missing license [\#2](https://github.com/jasonmit/ember-onbeforeunload/issues/2)
 - use controller as the source of truth for isDirty instead of currentModel [\#1](https://github.com/jasonmit/ember-onbeforeunload/issues/1)
 
 
