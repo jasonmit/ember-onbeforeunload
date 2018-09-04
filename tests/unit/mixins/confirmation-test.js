@@ -1,4 +1,7 @@
 /* jshint expr:true */
+import EmberObject from '@ember/object';
+
+import Route from '@ember/routing/route';
 import { expect } from 'chai';
 import {
   context,
@@ -6,13 +9,12 @@ import {
   it,
   beforeEach
 } from 'mocha';
-import Ember from 'ember';
 import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
 
 describe('ConfirmationMixin', function() {
   let defaultSubject;
   beforeEach(function() {
-    let ConfirmationRoute = Ember.Route.extend(ConfirmationMixin);
+    let ConfirmationRoute = Route.extend(ConfirmationMixin);
     defaultSubject = ConfirmationRoute.create();
   });
 
@@ -23,7 +25,7 @@ describe('ConfirmationMixin', function() {
       });
 
       it('throws an exception when mixing into a plain-ol\' ember object', function() {
-        let ConfirmationObject = Ember.Object.extend(ConfirmationMixin);
+        let ConfirmationObject = EmberObject.extend(ConfirmationMixin);
         expect(ConfirmationObject.create.bind()).to.throw;
       });
     });
@@ -34,7 +36,7 @@ describe('ConfirmationMixin', function() {
       let subject, modelObj;
       beforeEach(function() {
         subject = defaultSubject;
-        modelObj = Ember.Object.create({
+        modelObj = EmberObject.create({
           hasDirtyAttributes: undefined,
         });
       });
@@ -69,7 +71,7 @@ describe('ConfirmationMixin', function() {
 
   describe('readConfirmation', function() {
     it('handles overridden string confirmations', function() {
-      const subject = Ember.Route.extend(ConfirmationMixin, {
+      const subject = Route.extend(ConfirmationMixin, {
         confirmationMessage() {
           return 'custom warning';
         },
@@ -82,14 +84,14 @@ describe('ConfirmationMixin', function() {
     });
 
     it('calls overridden confirmation functions with the current route model', function() {
-      const subject = Ember.Route.extend(ConfirmationMixin, {
+      const subject = Route.extend(ConfirmationMixin, {
         confirmationMessage(model) {
           return `custom warning with name: ${model.get('name')}`;
         },
         routeName: 'test-route',
       }).create();
       const modelForStub = sandbox.stub(subject, 'modelFor')
-                                  .returns(Ember.Object.create({ name: 'foo'}));
+                                  .returns(EmberObject.create({ name: 'foo'}));
 
       expect(subject.readConfirmation()).to.equal('custom warning with name: foo');
       expect(modelForStub.getCall(0).args).to.deep.equal([subject.routeName]);
@@ -101,7 +103,7 @@ describe('ConfirmationMixin', function() {
       const parentRoute = 'parent.index';
       const childRoute = `${parentRoute}.sub`;
 
-      const subject = Ember.Route.extend(ConfirmationMixin, {
+      const subject = Route.extend(ConfirmationMixin, {
         routeName: parentRoute,
       }).create();
 
@@ -116,7 +118,7 @@ describe('ConfirmationMixin', function() {
       const parentRoute = 'parent.index';
       const unrelatedRoute = `unrelated.index`;
 
-      const subject = Ember.Route.extend(ConfirmationMixin, {
+      const subject = Route.extend(ConfirmationMixin, {
         routeName: parentRoute,
       }).create();
 

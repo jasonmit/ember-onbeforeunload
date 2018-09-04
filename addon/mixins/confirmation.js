@@ -1,6 +1,7 @@
-import Ember from 'ember';
-
-const { get, on, Mixin, Route } = Ember;
+import { get } from '@ember/object';
+import { on } from '@ember/object/evented';
+import Mixin from '@ember/object/mixin';
+import Route from '@ember/routing/route';
 
 export default Mixin.create({
   _ensureConfirmationMixinOnRoute: on('init', function() {

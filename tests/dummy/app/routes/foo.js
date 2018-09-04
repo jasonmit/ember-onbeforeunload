@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
 import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
 
-export default Ember.Route.extend(ConfirmationMixin, {
+export default Route.extend(ConfirmationMixin, {
   model() {
-    return Ember.Object.create({
+    return EmberObject.create({
       id: 1,
       username: 'jasonmit',
       hasDirtyAttributes: false,
