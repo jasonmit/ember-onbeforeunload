@@ -48,7 +48,7 @@ export default Mixin.create({
 
   activate() {
     const _super = this._super(...arguments);
-    
+
     if (window && window.addEventListener) {
       window.addEventListener('beforeunload', this, false);
       window.addEventListener('unload', this, false);
@@ -92,7 +92,18 @@ export default Mixin.create({
       if (!allow && this.isPageDirty(this.modelFor(this.routeName))) {
         const msg = this.readConfirmation();
 
-        if (window && window.confirm && !window.confirm(msg)) {
+        if (this.customConfirm) {
+          if (this._transitionConfirmed) {
+            this._transitionConfirmed = undefined;
+            return true;
+          }
+
+          transition.abort();
+          this.customConfirm(transition).then(() => {
+            this._transitionConfirmed = true;
+            transition.retry();
+          });
+        } else if (window && window.confirm && !window.confirm(msg)) {
           transition.abort();
           return false;
         }
