@@ -18,6 +18,10 @@ export default Mixin.create({
     /* intentionally left blank to implement own custom teardown logic */
   },
 
+  onRouteUnload() {
+    /* intentionally left blank to implement own custom teardown logic */
+  },
+
   onBeforeunload(e) {
     if (this.isPageDirty(this.modelFor(this.routeName))) {
       const confirmationMessage = this.readConfirmation();
@@ -49,7 +53,7 @@ export default Mixin.create({
 
   activate() {
     const _super = this._super(...arguments);
-    
+
     if (window && window.addEventListener) {
       window.addEventListener('beforeunload', this, false);
       window.addEventListener('unload', this, false);
@@ -96,6 +100,8 @@ export default Mixin.create({
         if (window && window.confirm && !window.confirm(msg)) {
           transition.abort();
           return false;
+        } else {
+          this.onRouteUnload();
         }
       }
 
