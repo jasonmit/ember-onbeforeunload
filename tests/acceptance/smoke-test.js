@@ -6,19 +6,18 @@ import {
   afterEach
 } from 'mocha';
 import { expect } from 'chai';
-import startApp from '../helpers/start-app';
-import destroyApp from '../helpers/destroy-app';
+import sinon from 'sinon'
 
 describe('Acceptance: Smoke Test', function() {
-  let application, windowConfirmStub;
+  let windowConfirmStub, sandbox;
 
   beforeEach(function() {
-    application = startApp();
+    sandbox = sinon.createSandbox();
     windowConfirmStub = sandbox.stub(window, 'confirm');
   });
 
   afterEach(function() {
-    destroyApp(application);
+    sandbox.restore();
   });
 
   it('does not confirm with the user if the record is not dirtied', function() {

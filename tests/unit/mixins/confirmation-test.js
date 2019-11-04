@@ -7,15 +7,22 @@ import {
   context,
   describe,
   it,
-  beforeEach
+  beforeEach,
+  afterEach
 } from 'mocha';
 import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
+import sinon from 'sinon';
 
 describe('ConfirmationMixin', function() {
-  let defaultSubject;
+  let defaultSubject, sandbox;
   beforeEach(function() {
     let ConfirmationRoute = Route.extend(ConfirmationMixin);
     defaultSubject = ConfirmationRoute.create();
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(function() {
+    sandbox.restore();
   });
 
   describe('init hook', function() {

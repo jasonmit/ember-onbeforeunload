@@ -117,24 +117,45 @@ Found a bug? Please report it!
 * `npm install`
 * `bower install`
 
-## Running
+### Linting
 
+<<<<<<< HEAD
 * `ember server`
 * Visit your app at http://localhost:4200.
+=======
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
+>>>>>>> 96941f1... message
 
-## Running Tests
+### Running tests
 
+<<<<<<< HEAD
 * `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
+=======
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+>>>>>>> 96941f1... message
 
-## Building
+### Running the dummy application
 
-* `ember build`
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
+<<<<<<< HEAD
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
 [npm]: https://www.npmjs.org/package/ember-onbeforeunload
 [npm-badge]: https://img.shields.io/npm/v/ember-onbeforeunload.svg?style=flat-square
 [travis]: https://travis-ci.org/jasonmit/ember-onbeforeunload
 [travis-badge]: https://img.shields.io/travis/jasonmit/ember-onbeforeunload.svg?branch=master&style=flat-square
+=======
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
+>>>>>>> 96941f1... message
