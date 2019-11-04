@@ -12,8 +12,10 @@ import {
 } from 'mocha';
 import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
 import sinon from 'sinon';
+import { setupTest } from 'ember-mocha';
 
 describe('ConfirmationMixin', function() {
+  setupTest();
   let defaultSubject, sandbox;
   beforeEach(function() {
     let ConfirmationRoute = Route.extend(ConfirmationMixin);

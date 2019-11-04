@@ -1,3 +1,4 @@
+import { click, currentRouteName, visit } from '@ember/test-helpers';
 import {
   describe,
   it,
@@ -8,8 +9,10 @@ import { expect } from 'chai';
 import sinon from 'sinon'
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('Acceptance: Smoke Test', function() {
+  setupApplicationTest();
   let application, windowConfirmStub, sandbox;
 
   beforeEach(function() {
