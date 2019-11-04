@@ -1,5 +1,6 @@
-import EmberObject from '@ember/object';
+/* eslint-disable ember/no-new-mixins */
 
+import EmberObject from '@ember/object';
 import Route from '@ember/routing/route';
 import { expect } from 'chai';
 import {

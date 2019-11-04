@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-new-mixins */
+
 import { get } from '@ember/object';
 import { on } from '@ember/object/evented';
 import Mixin from '@ember/object/mixin';
@@ -49,7 +51,7 @@ export default Mixin.create({
 
   activate() {
     const _super = this._super(...arguments);
-    
+
     if (window && window.addEventListener) {
       window.addEventListener('beforeunload', this, false);
       window.addEventListener('unload', this, false);

@@ -1,4 +1,27 @@
+<<<<<<< HEAD
 /bower_components
+=======
+# compiled output
+/dist/
+/tmp/
+
+# dependencies
+/bower_components/
+
+# misc
+/.bowerrc
+/.editorconfig
+/.ember-cli
+/.env*
+/.eslintignore
+/.eslintrc.js
+/.git/
+/.gitignore
+/.template-lintrc.js
+/.travis.yml
+/.watchmanconfig
+/bower.json
+>>>>>>> 4eea44a... message
 /config/ember-try.js
 /dist
 /tests
