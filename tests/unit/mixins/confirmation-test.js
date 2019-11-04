@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import EmberObject from '@ember/object';
 
 import Route from '@ember/routing/route';
