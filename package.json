@@ -17,7 +17,7 @@
   "homepage": "https://github.com/jasonmit/ember-onbeforeunload",
   "bugs": "https://github.com/jasonmit/ember-onbeforeunload/issues",
   "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
+    "node": " 8.* || >= 10.*"
   },
   "author": "Jason Mitchell <jason.mitchell.w@gmail.com>",
   "contributors": [
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@ember/jquery": "^1.1.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-cli": "~3.10.1",
+    "ember-cli": "~3.12.0",
     "ember-cli-chai": "^0.4.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.1",
@@ -47,7 +47,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
     "ember-sinon": "~2.1.0",
-    "ember-source": "~3.10.0",
+    "ember-source": "~3.12.0",
     "ember-source-channel-url": "^1.0.1",
     "ember-try": "^1.2.1",
     "eslint-plugin-ember": "^5.0.0",
