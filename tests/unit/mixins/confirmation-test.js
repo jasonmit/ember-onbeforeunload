@@ -338,6 +338,52 @@ describe('ConfirmationMixin', function() {
 
             expect(abortTransitionStub.calledOnce).to.be.true;
           });
+
+          context('customConfirm', function() {
+            let customConfirmStub, retryTransitionStub;
+            beforeEach(function() {
+              subject.customConfirm = customConfirmStub = sandbox.stub();
+
+              abortTransitionStub = sandbox.stub();
+              retryTransitionStub = sandbox.stub();
+              transition = {
+                abort: abortTransitionStub,
+                retry: retryTransitionStub,
+              };
+            });
+
+            it('confirms the transition with the user and aborts', function(done) {
+              let promise = Promise.reject();
+              promise.finally(() => {
+                setTimeout(() => {
+                  expect(retryTransitionStub.calledOnce).to.be.false;
+                  done();
+                }, 0);
+              });
+
+              customConfirmStub.returns(promise);
+              subject.send('willTransition', transition);
+
+              expect(customConfirmStub.calledOnce).to.be.true;
+              expect(abortTransitionStub.calledOnce).to.be.true;
+            });
+
+            it('confirms the transition with the user and retries', function(done) {
+              let promise = Promise.resolve();
+              promise.finally(() => {
+                setTimeout(() => {
+                  expect(retryTransitionStub.calledOnce).to.be.true;
+                  done();
+                }, 0);
+              });
+
+              customConfirmStub.returns(promise);
+              subject.send('willTransition', transition);
+
+              expect(customConfirmStub.calledOnce).to.be.true;
+              expect(abortTransitionStub.calledOnce).to.be.true;
+            });
+          });
         });
       });
     });

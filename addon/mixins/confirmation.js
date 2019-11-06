@@ -95,7 +95,18 @@ export default Mixin.create({
       if (!allow && this.isPageDirty(this.modelFor(this.routeName))) {
         const msg = this.readConfirmation();
 
-        if (window && window.confirm && !window.confirm(msg)) {
+        if (this.customConfirm) {
+          if (this._transitionConfirmed) {
+            this._transitionConfirmed = undefined;
+            return true;
+          }
+
+          transition.abort();
+          this.customConfirm(transition).then(() => {
+            this._transitionConfirmed = true;
+            transition.retry();
+          });
+        } else if (window && window.confirm && !window.confirm(msg)) {
           transition.abort();
           return false;
         }
