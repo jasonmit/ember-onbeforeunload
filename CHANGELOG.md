@@ -1,3 +1,16 @@
+## v2.0.0 (2019-11-06)
+
+#### :boom: Breaking Change
+* [#23](https://github.com/jasonmit/ember-onbeforeunload/pull/23) Upgrade to ember 3.14 ([@tylerturdenpants](https://github.com/tylerturdenpants))
+
+#### :rocket: Enhancement
+* [#30](https://github.com/jasonmit/ember-onbeforeunload/pull/30) Add release-it ([@tylerturdenpants](https://github.com/tylerturdenpants))
+* [#18](https://github.com/jasonmit/ember-onbeforeunload/pull/18) Add support for custom async confirmation handler ([@krasnoukhov](https://github.com/krasnoukhov))
+
+#### Committers: 2
+- Dmitry Krasnoukhov ([@krasnoukhov](https://github.com/krasnoukhov))
+- Ryan Mark ([@tylerturdenpants](https://github.com/tylerturdenpants))
+
 # Change Log
 
 ## [1.2.0](https://github.com/jasonmit/ember-onbeforeunload/tree/1.2.0) (2018-09-04)
