@@ -1,21 +1,30 @@
-/* jshint expr:true */
-import EmberObject from '@ember/object';
+/* eslint-disable ember/no-new-mixins */
 
+import EmberObject from '@ember/object';
 import Route from '@ember/routing/route';
 import { expect } from 'chai';
 import {
   context,
   describe,
   it,
-  beforeEach
+  beforeEach,
+  afterEach
 } from 'mocha';
 import ConfirmationMixin from 'ember-onbeforeunload/mixins/confirmation';
+import sinon from 'sinon';
+import { setupTest } from 'ember-mocha';
 
 describe('ConfirmationMixin', function() {
-  let defaultSubject;
+  setupTest();
+  let defaultSubject, sandbox;
   beforeEach(function() {
     let ConfirmationRoute = Route.extend(ConfirmationMixin);
     defaultSubject = ConfirmationRoute.create();
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(function() {
+    sandbox.restore();
   });
 
   describe('init hook', function() {
